@@ -1,5 +1,6 @@
 class Playlist < Sequel::Model
   one_to_many :songs
+  attr_accessor :current_song
 
   def added_by_user(user_ip)
     self.songs.collect do |song|
@@ -24,12 +25,12 @@ class Playlist < Sequel::Model
     if !self.playlist_full?
       if self.added_by_user(user_ip).length < 4
         Song.create do |s| 
-            s.spotify_id  =  spotify_hash[:spotify_id]
-             s.song_name  =  spotify_hash[:song_name]
-           s.artist_name  =  spotify_hash[:artist_name]
-            s.created_at  = Time.now
-           s.playlist_id  =  self.id
-            s.creator_ip  =  user_ip
+          s.spotify_id  =  spotify_hash[:spotify_id]
+           s.song_name  =  spotify_hash[:song_name]
+         s.artist_name  =  spotify_hash[:artist_name]
+          s.created_at  =  Time.now
+         s.playlist_id  =  self.id
+          s.creator_ip  =  user_ip
         end
       else
         self.user_limit_met
@@ -45,7 +46,6 @@ class Playlist < Sequel::Model
 
   def current_song
     @song = self.songs_in_queue.shift
-    # @song.destroy
   end 
 
   def songs_in_queue
@@ -54,6 +54,7 @@ class Playlist < Sequel::Model
 
   def before_play
     # should have a song to send to spotifiy play
+
   end
 
   def after_play

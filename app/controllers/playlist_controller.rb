@@ -35,8 +35,8 @@ class PlaylistController < ApplicationController
   get '/playlist' do 
     @queries = session[:queries]
     @playlist = Playlist[1]
-    @current_song = @playlist.current_song
     @songs = @playlist.songs_in_queue
+    binding.pry
     erb :'playlist/playlist'
   end
 
