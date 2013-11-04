@@ -36,7 +36,6 @@ class PlaylistController < ApplicationController
     @queries = session[:queries]
     @playlist = Playlist[1]
     @songs = @playlist.songs_in_queue
-    binding.pry
     erb :'playlist/playlist'
   end
 
@@ -46,6 +45,10 @@ class PlaylistController < ApplicationController
     redirect '/playlist'
   end
 
+  get '/playlist/played/:uri' do
+    Playlist[1].after_play(params[:uri])
+    "ok"
+  end
 end
 
 # HEROKU OR RASPBERRY PI

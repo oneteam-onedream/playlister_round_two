@@ -57,7 +57,10 @@ class Playlist < Sequel::Model
 
   end
 
-  def after_play
+  def after_play(uri)
     # should take the first song in the sorted list send to before_play
+    song = Song.where(:spotify_id => uri)
+    song.destroy
+
   end
 end
