@@ -7,8 +7,4 @@ class Spotify_Finder
       spotify_id: "#{query}"
     }]
   end
-
-  def self.play(uri)
-    p "playing #{uri}"
-  end
 end

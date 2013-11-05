@@ -35,7 +35,12 @@ class PlaylistController < ApplicationController
   get '/playlist' do 
     @queries = session[:queries]
     @playlist = Playlist[1]
-    @songs = @playlist.songs_in_queue
+    if session[:current_song]
+      @current_song = session[:current_song]
+      @songs = @playlist.song_sort.reject{ |song| song if song == @current_song }
+    else
+      @songs = @playlist.song_sort
+    end
     erb :'playlist/playlist'
   end
 
@@ -47,7 +52,8 @@ class PlaylistController < ApplicationController
 
   get '/playlist/played/:uri' do
     Playlist[1].after_play(params[:uri])
-    "ok"
+    session[:current_song] = Playlist[1].songs_in_queue.first
+    redirect '/playlist'  
   end
 end
 
