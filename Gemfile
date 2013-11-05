@@ -1,13 +1,11 @@
 source 'https://rubygems.org'
 
+require 'open-uri'
+require 'json'
 
-gem 'spotify'
-gem 'logger'
 gem 'pry'
-gem 'plaything'
 gem 'activerecord'
 gem 'sequel'
 gem 'sqlite3'
 gem 'sinatra'
 gem 'sinatra-reloader'
-gem 'ffi', "1.9.0"
