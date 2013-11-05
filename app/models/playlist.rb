@@ -40,6 +40,10 @@ class Playlist < Sequel::Model
     end
   end
 
+  def without(current_song)
+    self.songs.reject { |song| song if song == current_song }
+  end
+
   def song_sort
     self.songs.sort_by { |song| song.upvotes }.reverse
   end
@@ -58,9 +62,9 @@ class Playlist < Sequel::Model
   end
 
   def after_play(uri)
-    # should take the first song in the sorted list send to before_play
-    song = Song.where(:spotify_id => uri)
-    song.destroy
-
+    Song.find(:song_name => uri).voters.each do |voter|
+      voter.destroy
+    end
+    Song.find(:song_name => uri).destroy
   end
 end

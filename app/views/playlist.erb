@@ -6,9 +6,7 @@
 
   <% if @songs %>
     <% @songs.each_with_index do |song, i| %>
-      <% if i < 15 %>
-        <li> <%= song.upvotes %> - <a href="/songs/<%= song.id %>/upvote">  ۩  </a>   <%= song.song_name %>  </li>
-      <% end %>
+      <li> <%= song.upvotes %> - <a href="/songs/<%= song.id %>/upvote">  ۩  </a>   <%= song.song_name %>  </li>
     <% end %>
   <% end %>
 </ul>
