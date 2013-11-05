@@ -13,6 +13,13 @@ class PlaylistController < ApplicationController
   #   redirect '/playlist'
   # end
 
+  get '/search' do
+    q = params[:q].gsub(' ', '%20')
+    @queries = JSON.parse(open(URI.escape("http://localhost:9292/spotify?q=#{q}")).read)
+    @songs = Playlist[1].song_sort
+    erb :'playlist/playlist'
+  end
+
   post '/playlist/add' do
     @song = Playlist[1].add_song(params[:song], request.ip)
     if @song == :user_limit_met
