@@ -1,21 +1,189 @@
+
 a {
   text-decoration: none;
 }
 
-.now_playing {
-  clear: both;
+
+.mama {
+  padding-top: 80px;
+  width: 100%;
   text-align: center;
+  height: 100%;
+  min-height: 100%;
 }
 
-.left-column {
-  float: left;
-}
 
-.middle-column {
-  margin: 0px;
-  text-align: center;
-}
-
-.right-column {
+.right-column /* search results */ {
+  
+  border: 2px solid black;
   float: right;
+  width: 25%;
+  margin: 0 auto;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 8%;
+  right: 3%;
+  height: 63.333%;
+  overflow-y: scroll;
+}
+
+.left-column /* song list */ {
+ border: 2px solid black;
+ text-align: left;
+  padding: 10px 0;
+  height: 100%;
+  
+}
+
+.list {
+  overflow-y: scroll;
+  margin-top: 5%;
+  height: 95%;
+
+}
+
+
+
+#list {
+  border: 2px solid black;
+  width:80%;
+  margin: 5%;
+  overflow: auto;
+  height: 100%;
+  min-height: 100%;
+
+}
+
+
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+#song_info {
+  
+  width: 100%;
+  text-align: left;
+  /*position: relative; 
+  left: 30%;
+  top: 80%;
+  display: inline-block;*/
+  /*float: right;*/
+  margin-left: 50%;
+  font: 18px/1.5em sans-serif;
+  padding-right: 9px;
+
+}
+
+.upvote {
+ 
+  width: 15px;
+  position: relative; 
+  left: 5%;
+  top: 80%;
+  float: left;
+  display: inline-block;
+  margin-top: 15%;
+  font-size: 25px;
+
+}
+
+.upvote-count {
+  margin: 14% 1% 10% 13%;
+  float: left;
+  display: inline-block;
+  font-size: 25px;
+  font-family: futura;
+
+}
+
+#list a:link, #list a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+#list a:active {
+  color: red;
+}
+
+.upvote:hover {
+  font-size: 28px;
+}
+
+
+.flatiron img {
+  float: left;
+  position: fixed;
+  top: 3%;
+  left: 4%;
+  width: 15%;
+}
+
+
+
+.now_playing {
+  
+  text-align: center;
+  
+  font-size: 20px;
+  width: 30%;
+  margin: 0 auto;
+  
+}
+
+
+
+
+li
+{
+    list-style-type: none;
+    border-radius: 2px;
+    margin: 5px;
+    padding: 2px;
+    width: 66.666%;
+}
+
+.middle-column /* search bar and radio */{
+  width: 40%;
+  margin: 0 auto;
+}
+
+ .middle-column  img {
+      width: 100%;
+      height: auto;    
+  }
+
+
+  .left-container h2, .right-container h2 {
+    font-family: sans-serif;
+    margin: 0 0 0 20px;
+    padding: 10px;
+    line-height: 0;
+    background: white;
+    position: relative;
+    top: 10px;
+    display: inline;
+
+  }
+
+
+
+.left-container {
+  width: 25%;
+  position: fixed;
+  bottom: 8%;
+  left: 3%;
+  height: 63.333%;
+  text-align: left;
+}
+
+.right-container {
+  width: 25%;
+  position: fixed;
+  bottom: 10%;
+  right: 3%;
+  height: 63.333%;
+  text-align: left;
 }
