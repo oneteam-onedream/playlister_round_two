@@ -91,7 +91,7 @@ input[id="search-button"]:hover {
   /*border: 2px solid red;*/
   height: 40px;
   width: 80%;
-  margin: 0 auto;
+  margin: -35px auto;
 }
 
 .divimage-search-hide {
@@ -191,7 +191,7 @@ input[id="search-button"]:hover {
   font: 18px/1.5em sans-serif;
   font-size: 22px;
   width: 30%;
-  margin: -10px auto;
+  margin: -50px auto;
   
 }
 

@@ -106,7 +106,7 @@ exports.play = function (req, res) {
     .on('finish', function () {
       // send route back to sinatra letting it know this track is done playing
       request('http://localhost:9292/playlist/played/' + uri, function(err, res, body) {
-        console.log(body);
+        //console.log(body);
       });
     });
   });
