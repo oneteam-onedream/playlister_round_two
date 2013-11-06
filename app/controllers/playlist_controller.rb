@@ -17,6 +17,12 @@ class PlaylistController < ApplicationController
     redirect '/playlist'
   end
 
+  get '/playlist/start' do
+    @@current = Playlist[1].songs_in_queue.first
+    open("http://localhost:9292/spotify/#{@@current.spotify_id}")
+    redirect '/playlist'
+  end
+
   post '/playlist/add' do
     @song = Playlist[1].add_song(params[:song], request.ip)
     if @song == :user_limit_met

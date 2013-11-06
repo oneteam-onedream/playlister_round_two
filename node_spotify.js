@@ -68,7 +68,7 @@ exports.search = function (req, res) {
                   artist_name: track.artist[0],
                   song_name: track.title[0],
                   album_name: track.album[0],
-                  album_art: album.cover[2].uri,
+                  album_art: album.cover[0].uri,
                   uri: Spotify.id2uri('track', track.id[0])
                 });
                 // Callback to the nested async.each loop - done after each track is processed
