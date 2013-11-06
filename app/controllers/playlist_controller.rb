@@ -6,20 +6,15 @@ class PlaylistController < ApplicationController
   get '/' do
     Playlist.create
     redirect '/playlist'
-    #session[:song_votes] = {}
   end
-
-  # get '/spotify' do
-  #   @queries = Spotify_Finder.search(params[:search])
-  #   session[:queries] = @queries
-  #   redirect '/playlist'
-  # end
 
   get '/search' do
     q = params[:q].gsub(' ', '%20')
+    q = q.gsub('-','')
     @queries = JSON.parse(open(URI.escape("http://localhost:9292/spotify?q=#{q}")).read)
-    @songs = Playlist[1].song_sort
-    erb :'playlist/playlist'
+    session[:queries] = @queries[0..7]
+
+    redirect '/playlist'
   end
 
   post '/playlist/add' do
@@ -41,7 +36,7 @@ class PlaylistController < ApplicationController
     erb :'playlist/playlist_full'
   end
 
-  get '/playlist' do 
+  get '/playlist' do  
     @queries = session[:queries]
     @playlist = Playlist[1]
     if @@current
@@ -65,28 +60,3 @@ class PlaylistController < ApplicationController
     open("http://localhost:9292/spotify/#{@@current.spotify_id}")
   end
 end
-
-# HEROKU OR RASPBERRY PI
-
-# master page
-#   -master user creates 'room' with name and password
-#   -teather to spotify login
-#   -master streams songs
-#   -has user page functionality
-
-# user page
-
-
-
-# duplication!
-# Spotify functionality
-# AJAX
-#   -search results
-#   -list sorting by vote count
-#   -
-# Where to play the song?
-#   -adding to database with after_play callback
-#   -removing song from list with after_play callback
-# CSS/ page design
-# archive/ history page?
-# server/ database
