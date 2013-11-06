@@ -36,7 +36,7 @@ class PlaylistController < ApplicationController
     erb :'playlist/playlist_full'
   end
 
-  get '/playlist' do  
+  get '/playlist' do 
     @queries = session[:queries]
     @playlist = Playlist[1]
     if @@current

@@ -28,6 +28,8 @@ class Playlist < Sequel::Model
           s.spotify_id  =  spotify_hash[:spotify_id]
            s.song_name  =  spotify_hash[:song_name]
          s.artist_name  =  spotify_hash[:artist_name]
+          s.album_name  =  spotify_hash[:album_name]
+         s.album_cover  =  spotify_hash[:album_cover]
           s.created_at  =  Time.now
          s.playlist_id  =  self.id
           s.creator_ip  =  user_ip

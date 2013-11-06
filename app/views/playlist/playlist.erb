@@ -1,16 +1,17 @@
 <div class="mama">
   <div class="now_playing">
+
     <% if @current_song %>
-      Now playing: <br> <%= @current_song.song_name %><br />
+      Now playing: <br> <%= @current_song.artist_name %> - <%= @current_song.song_name %><br />
     <% end %>
   </div>
   <div class="flatiron">
-    <img src="/img/flatiron.png">
+    <img src="/img/flatiron_logo.png">
   </div>
 <div class="left-container">
   <h2> PLAYLIST </h2>
  <div class="left-column">
-  <div class="list">
+  <div class="list-play">
       <ul>
         <% if @songs %>
           <% @songs.each_with_index do |song, i| %>
@@ -27,9 +28,9 @@
                   </div>
                   
                   <div id="song_info">
-                  <%= song.song_name %>  <br>
-                  <%= song.song_name %>  <br>
-                  <%= song.song_name %> <br>
+                  <%= song.artist_name %> <br>
+                  <%= song.song_name %>   <br>
+                  <%= song.album_name %>  <br>
                   </div>
                 </li>
               </div>
@@ -45,28 +46,45 @@
       <h2> SEARCH RESULTS </h2>
      <div class="right-column">
 
-    <div class="search-results">
-    <% if @queries %>
-      <% @queries.each do |query| %>
-        <form action="/playlist/add" method="post">
-          <input type="hidden" name="song[song_name]" value="<%= query['song_name']%>">
-          <input type="hidden" name="song[artist_name]" value="<%= query['artist_name']%>">
-          <input type="hidden" name="song[spotify_id]" value="<%= query['uri']%>">
-          <input type="submit" value="<%= query['artist_name'] %> - <%= query['song_name'] %>">
-        </form>
+    <div class="list-search">
+
+      <% if @queries %>
+        <% @queries.each do |query| %>
+          <form action="/playlist/add" method="post">
+
+            <input type="hidden" name="song[song_name]" value="<%= query['song_name']%>">
+            <input type="hidden" name="song[artist_name]" value="<%= query['artist_name']%>">
+            <input type="hidden" name="song[album_name]" value="<%= query['album_name']%>">
+            <input type="hidden" name="song[spotify_id]" value="<%= query['uri']%>">
+            <input type="hidden" name="song[album_cover]" value="<%= query['album_art']%>">
+
+            <div class="divimage-search-hide">
+              <div class="divimage">
+                <img src="<%= query['album_art']%>" height="70" width="70">
+              </div>
+              <input type="submit" id="search-hide" value="<%= query['song_name']%>&#13;&#10; <%=query['artist_name']%>&#13;&#13;&#10; <%=query['album_name']%>&#13;">
+              <br>
+            </div>
+
+          </form>
+        <% end %>
       <% end %>
-    <% end %>
+
     </div>
   </div>
 </div>
     
   <div class="middle-column">
-    <img src="/img/boombox.png">
+    <% if @current_song %>
+      <% @current_song.album_cover ||= "/img/boombox.png" %>
+      <div class="album-image"><img src="<%= @current_song.album_cover%>"></div>
+    <%# else %>
+<!--       <div class="album-image"><img src="/img/boombox.png"></div> -->
+    <% end %>
     <div id="search">
       <form action="/search" method="get">
-        <input type="text" name="q" placeholder="enter something">
-        <br>
-        <input type="submit" value="search">
+        <input id="bar" type="text" name="q" placeholder="search by song, artist or album">
+        <input type="submit" value="search" id="search-button">
       </form>
     </div>
   </div>
