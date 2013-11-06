@@ -1,6 +1,6 @@
 class NodeController < ApplicationController
   get '/spotify' do
-    open(("http://localhost:5002/spotify?query=#{params[:q]}"))
+    open(URI.escape("http://localhost:5002/spotify?query=#{params[:q]}"))
   end
 
   get '/spotify/:uri' do

@@ -38,9 +38,11 @@ exports.album = function (req, res) {
 exports.search = function (req, res) {
   // Properly structured querystring can be used directly in the Spotify search function
   // req.query == { type: 'tracks', query: 'song or artist or whatever' }
+  req.query['query'] = decodeURI(req.query['query']);
   spotify.search(req.query, function (err, xml) {
     var parser = xml2js.Parser();
     var songList = [];
+    console.log(req.query);
     parser.on('end', function (data) {
       // The response has an array of 'tracks' even though it seems there is only one, preferable to for each it anyway
       if (data.result.tracks[0] === '') {
