@@ -24,7 +24,7 @@ class PlaylistController < ApplicationController
     elsif @song == :playlist_full
       redirect '/playlist/full'
     end
-    session[:queries] = nil
+    # session[:queries] = nil
     redirect '/playlist'
   end
 
@@ -37,6 +37,7 @@ class PlaylistController < ApplicationController
   end
 
   get '/playlist' do 
+  # binding.pry 
     @queries = session[:queries]
     @playlist = Playlist[1]
     if @@current
