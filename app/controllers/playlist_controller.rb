@@ -1,6 +1,8 @@
 class PlaylistController < ApplicationController
   enable :sessions
 
+  @@current = nil
+
   get '/' do
     Playlist.create
     redirect '/playlist'
@@ -12,6 +14,13 @@ class PlaylistController < ApplicationController
   #   session[:queries] = @queries
   #   redirect '/playlist'
   # end
+
+  get '/search' do
+    q = params[:q].gsub(' ', '%20')
+    @queries = JSON.parse(open(URI.escape("http://localhost:9292/spotify?q=#{q}")).read)
+    @songs = Playlist[1].song_sort
+    erb :'playlist/playlist'
+  end
 
   post '/playlist/add' do
     @song = Playlist[1].add_song(params[:song], request.ip)
@@ -35,8 +44,8 @@ class PlaylistController < ApplicationController
   get '/playlist' do 
     @queries = session[:queries]
     @playlist = Playlist[1]
-    if session[:current_song]
-      @current_song = session[:current_song]
+    if @@current
+      @current_song = @@current
       @songs = @playlist.song_sort.reject{ |song| song if song == @current_song }
     else
       @songs = @playlist.song_sort
@@ -52,8 +61,8 @@ class PlaylistController < ApplicationController
 
   get '/playlist/played/:uri' do
     Playlist[1].after_play(params[:uri])
-    session[:current_song] = Playlist[1].songs_in_queue.first
-    redirect '/playlist'  
+    @@current = Playlist[1].songs_in_queue.first
+    open("http://localhost:9292/spotify/#{@@current.spotify_id}")
   end
 end
 

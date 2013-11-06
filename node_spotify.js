@@ -44,7 +44,7 @@ exports.search = function (req, res) {
     parser.on('end', function (data) {
       // The response has an array of 'tracks' even though it seems there is only one, preferable to for each it anyway
       if (data.result.tracks[0] === '') {
-        res.send("");
+        res.send("[]");
       }
       else {
         async.each(data.result.tracks, function (tracks, callback) {
@@ -58,15 +58,20 @@ exports.search = function (req, res) {
             spotify.get(album_uri, function (err, album) {
               if (err) throw err;
 
-              songList.push({
-                artist: track.artist[0],
-                title: track.title[0],
-                album: track.album[0],
-                album_art: album.cover[2].uri,
-                uri: Spotify.id2uri('track', track.id[0])
-              });
-              // Callback to the nested async.each loop - done after each track is processed
-              callback();
+              if (track.cover === undefined) {
+                callback();
+              }
+              else {
+                songList.push({
+                  artist_name: track.artist[0],
+                  song_name: track.title[0],
+                  album_name: track.album[0],
+                  album_art: album.cover[2].uri,
+                  uri: Spotify.id2uri('track', track.id[0])
+                });
+                // Callback to the nested async.each loop - done after each track is processed
+                callback();
+              }
             });
           },
           function (err) {
