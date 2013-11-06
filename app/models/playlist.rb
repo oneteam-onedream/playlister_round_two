@@ -23,7 +23,7 @@ class Playlist < Sequel::Model
 
   def add_song(spotify_hash, user_ip)
     if !self.playlist_full?
-      if self.added_by_user(user_ip).length < 4
+      if self.added_by_user(user_ip).length < 100
         Song.create do |s| 
           s.spotify_id  =  spotify_hash[:spotify_id]
            s.song_name  =  spotify_hash[:song_name]
@@ -62,9 +62,9 @@ class Playlist < Sequel::Model
   end
 
   def after_play(uri)
-    Song.find(:song_name => uri).voters.each do |voter|
+    Song.find(:spotify_id => uri).voters.each do |voter|
       voter.destroy
     end
-    Song.find(:song_name => uri).destroy
+    Song.find(:spotify_id => uri).destroy
   end
 end

@@ -5,5 +5,6 @@ class NodeController < ApplicationController
 
   get '/spotify/:uri' do
     open("http://localhost:5002/spotify/#{params[:uri]}")
+    redirect '/playlist'
   end
 end
