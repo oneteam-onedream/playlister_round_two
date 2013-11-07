@@ -28,9 +28,9 @@
                   </div>
                   
                   <div id="song_info">
-                  <%= song.artist_name %> <br>
+                  <strong><%= song.artist_name %> </strong><br>
                   <%= song.song_name %>   <br>
-                  <%= song.album_name %>  <br>
+                  <em> <%= song.album_name %> </em> <br>
                   </div>
                 </li>
               </div>
@@ -49,8 +49,8 @@
     <div class="list-search">
 
       <% if @queries %>
-        <% @queries.each do |query| %>
-          <form action="/playlist/add" method="post">
+        <% @queries.each_with_index do |query,index| %>
+          <form action="/playlist/add" method="post" name="search<%= index %>">
 
             <input type="hidden" name="song[song_name]" value="<%= query['song_name']%>">
             <input type="hidden" name="song[artist_name]" value="<%= query['artist_name']%>">
@@ -58,12 +58,11 @@
             <input type="hidden" name="song[spotify_id]" value="<%= query['uri']%>">
             <input type="hidden" name="song[album_cover]" value="<%= query['album_art']%>">
 
-            <div class="divimage-search-hide">
+            <div class="divimage-search-hide clearfix">
               <div class="divimage">
                 <img src="<%= query['album_art']%>" height="70" width="70">
               </div>
-              <input type="submit" id="search-hide" value="<%= query['song_name']%>&#13;&#10; <%=query['artist_name']%>&#13;&#13;&#10; <%=query['album_name']%>&#13;">
-              <br>
+               <a class="search-hide" onclick="document.search<%=index%>.submit(); return false;"> <strong> <%=query['artist_name']%></strong><br><%=query['song_name']%> <em><br><%=query['album_name']%></em> </a>
             </div>
 
           </form>

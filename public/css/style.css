@@ -1,3 +1,11 @@
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
 
 a {
   text-decoration: none;
@@ -10,6 +18,8 @@ a {
   text-align: center;
   height: 100%;
   min-height: 100%;
+  position: fixed;
+  padding: 30px;
 }
 
 #bar {
@@ -45,7 +55,6 @@ input[id="search-button"]:hover {
   padding: 10px 0;
   height: 100%;
   font-size: 18px;
-  border-radius: 4px;
 }
 
 .left-column /* song list */ {
@@ -53,7 +62,6 @@ input[id="search-button"]:hover {
  text-align: left;
   padding: 10px 0;
   height: 100%;
-  border-radius: 4px;
   
 }
 
@@ -63,21 +71,19 @@ input[id="search-button"]:hover {
   height: 95%;
 }
 
-#search-hide {
+.search-hide {
  border: 2px solid black;
- position: relative;
-  width:70%;
+ text-align: center;
+  width: 70%;
   margin-left: 15%;
   margin-top: 5%;
-  overflow: auto;
-  height: 100%;
-  min-height: 100%;
  background: white;
  cursor: pointer;
- font: 18px/1.5em sans-serif;
+ font: 18px/1.5em Arial, Verdana, sans-serif;
  float: right;
- display: inline-block;
-
+ word-wrap: break-word;
+ display: block;
+ padding: 10px;
 }
 
 /*.search-results {
@@ -89,26 +95,24 @@ input[id="search-button"]:hover {
   min-height: 100%;
 }*/
 
-#search {
+.search {
   /*border: 2px solid red;*/
   height: 40px;
   width: 80%;
-  margin: -35px auto;
+  margin: 0 auto;
+  position: fixed;
 }
 
 .divimage-search-hide {
   border: 2px solid black;
   width:90%;
   margin: 5%;
-  overflow: auto;
-  height: 100%;
-  min-height: 100%;
   padding-bottom: 20px;
   padding-right: 10px;
-  border-radius: 3px;
 }
 .list-search {
   overflow-y: scroll;
+  overflow-x: hidden;
   margin-top: 5%;
   height: 95%;
 
@@ -118,9 +122,14 @@ input[id="search-button"]:hover {
   border: 2px solid black;
   width:80%;
   margin: 5%;
-  overflow-y: scroll;
+  padding: 10px;
+  overflow-x: hidden;
+  word-wrap: break-word;
   height: 100%;
   min-height: 100%;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
 
 }
 
@@ -181,12 +190,9 @@ input[id="search-button"]:hover {
 .flatiron img {
   float: left;
   position: fixed;
-  margin: 2%;
-  margin-left: 5%;
-  margin-top: 2%;
   top: 3%;
   left: 4%;
-  width: 12%;
+  width: 15%;
 }
 
 
@@ -197,11 +203,11 @@ input[id="search-button"]:hover {
   font: 18px/1.5em sans-serif;
   font-size: 22px;
   width: 30%;
-  margin: -60px auto;
+  margin: -10px auto;
   
 }
 
-#search-hide:hover {
+.search-hide:hover {
   color: grey;
 }
 
@@ -240,33 +246,11 @@ li
 
 
   .divimage {
-   
-    /*position: relative;
-  margin-left: 20px;
-  margin-top: 12px;
-  float: left;
-  border: 2px solid pink;
-  width: 71px;
-  height: 71px;
-  display: inline-block;*/
-  /*border: 2px solid pink;*/
-   width: 15px;
-  position: relative; 
-  left: 5%;
-  top: 80%;
-  float: left;
-  display: inline-block;
-  margin-top: 7%;
-  font-size: 25px;
-
-  }
-
-  .album-image {
-    width: 90%;
-    heigh: 90%;
-    margin: 5%;
-    margin-bottom: 8%;
-    margin-top: 8%;
+    width: 15%;
+    float: left;
+    display: block;
+    margin-top: 11%;
+    padding-left: 12px;
   }
 
 
@@ -288,4 +272,9 @@ li
   right: 3%;
   height: 63.333%;
   text-align: left;
+}
+
+.middle-column img {
+  width: 100%;
+  height: auto;
 }
