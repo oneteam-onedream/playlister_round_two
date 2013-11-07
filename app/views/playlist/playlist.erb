@@ -19,18 +19,31 @@
               <div id="list">
                 <li>
                   <a href="/songs/<%= song.id %>/upvote">
-                  <div class="fa fa-arrow-up upvote" >
-                        
+                  <% if Voter.find(ip_address: @ip, song_id: song.id)%>
+                    <div class="fa fa-arrow-up upvote" style="color: orange;">
+                  <% else %>
+                    <div class="fa fa-arrow-up upvote">
+                  <% end %>
                   </div>
+
+
                   </a>
                   <div class="upvote-count">
                   <%= song.upvotes %> 
                   </div>
                   
                   <div id="song_info">
-                  <strong><%= song.artist_name %> </strong><br>
-                  <%= song.song_name %>   <br>
-                  <em> <%= song.album_name %> </em> <br>
+                    <% if song.creator_ip == @ip %>
+                      <font color="green">
+                        <strong><%= song.artist_name %></strong><br>
+                        <%= song.song_name %>   <br>
+                      <em> <%= song.album_name %> </em> <br>
+                    </font>
+                    <% else %>
+                      <strong><%= song.artist_name %> </strong><br>
+                      <%= song.song_name %>   <br>
+                      <em> <%= song.album_name %> </em> <br>
+                    <% end %>
                   </div>
                 </li>
               </div>

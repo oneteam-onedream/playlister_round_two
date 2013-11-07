@@ -44,6 +44,7 @@ class PlaylistController < ApplicationController
 
   get '/playlist' do 
   # binding.pry 
+    @ip = request.ip
     @queries = session[:queries]
     @playlist = Playlist[1]
     if @@current
