@@ -25,7 +25,8 @@ a {
 #bar {
   width: 80%;
   height: 45px;
-  font-size: 18px;
+  font-size: 17px;
+
 }
 
 input[id="search-button"] {
