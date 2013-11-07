@@ -3,10 +3,7 @@ class Playlist < Sequel::Model
   attr_accessor :current_song
 
   def added_by_user(user_ip)
-    self.songs.collect do |song|
-      users_songs ||= []
-      users_songs << song if song.creator_ip == user_ip
-    end
+    self.songs.select { |song| song.creator_ip == user_ip }
   end
 
   def add_song(spotify_hash, user_ip)
