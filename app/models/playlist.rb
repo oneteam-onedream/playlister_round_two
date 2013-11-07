@@ -10,7 +10,7 @@ class Playlist < Sequel::Model
     if Song.find(spotify_id: spotify_hash[:spotify_id])
       return
     else
-      Song.create do |s| 
+      song = Song.create do |s| 
         s.spotify_id  =  spotify_hash[:spotify_id]
          s.song_name  =  spotify_hash[:song_name]
        s.artist_name  =  spotify_hash[:artist_name]
@@ -20,6 +20,7 @@ class Playlist < Sequel::Model
        s.playlist_id  =  self.id
         s.creator_ip  =  user_ip
       end
+      song.vote(user_ip)
     end
   end
 
