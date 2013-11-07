@@ -48,7 +48,7 @@
 
     <div class="list-search">
 
-      <% if @queries %>
+      <% if @queries && @queries.length > 0 %>
         <% @queries.each_with_index do |query,index| %>
           <form action="/playlist/add" method="post" name="search<%= index %>">
 
@@ -67,6 +67,11 @@
 
           </form>
         <% end %>
+        <%else%>
+        <div id="resultless">
+          We searched the darkest corners of the web,<br>
+          but alas our search was fruitless.
+        </div>
       <% end %>
 
     </div>

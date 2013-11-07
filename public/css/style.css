@@ -95,8 +95,14 @@ input[id="search-button"]:hover {
   min-height: 100%;
 }*/
 
+#resultless {
+  font: 18px/1.5em sans-serif;
+  width: 80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
 .search {
-  /*border: 2px solid red;*/
   height: 40px;
   width: 80%;
   margin: 0 auto;
