@@ -180,6 +180,8 @@ input[id="search-button"]:hover {
 
 }
 
+
+
 #list a:link, #list a:visited {
   color: black;
   text-decoration: none;
@@ -260,6 +262,13 @@ li
     padding-left: 12px;
   }
 
+.album-image {
+  width: 88%;
+  height: 88%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
 
 
 .left-container {
