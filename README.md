@@ -18,16 +18,12 @@ flatiron-playlister
 
 TODO
 ====
-- spotify search and stream  
-- AJAX  
-- voting bugfix (needs to remember ip of voter) 
-- `play` needs to affect the song list
-  
+- a proper server?
+- testing!
+- jquery!
+- etc!
 
 down the line 
 ------
-- css  
-- images  
-- deployment  
- - transition from sequel to active record  
-  - this will entail switching from sqlite3 to postgres or something of the like
+- rails and activerecord
+- incorporate itunes, soundcloud, bandcamp, etc
