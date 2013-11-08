@@ -8,6 +8,9 @@ to use this program at the moment, you'll need a spotify account and node ([link
 - in a seperate terminal, run `rackup`
 - go to localhost:9292, add a song, and go to localhost:9292/playlist/start to fire it up
 
+
+to work on the program
+-----
 -  fork this repositry
 -  clone it locally
 -  add this repo as the local upsteam like so:  
@@ -20,8 +23,6 @@ to use this program at the moment, you'll need a spotify account and node ([link
 -  make a pull request to merge your feature branch to the oneteam-onedream master branch
     -  do not merge your pull requests, we should all be on the same page about the content being merged
     -  when you work, be sure to be up to date with the upstream/master branch. It's good habit to pull often
-    -  AWESOME!
-
 
 TODO
 ====
